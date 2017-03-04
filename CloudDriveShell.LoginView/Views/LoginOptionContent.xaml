@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="CloudDriveShell.LoginView.Views.LoginOptionContent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="500">
+    <UserControl.Resources>
+        <ResourceDictionary Source="pack://application:,,,/CloudDriveShell.Infrastructure;component/Theme/General.xaml"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center">
+            <Image Stretch="UniformToFill" Width="72" Height="72" Source="../Resources/logo.png"></Image>
+            <TextBlock Text="云盘客户端" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="30"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center">
+            <TextBox Height="40" Width="240" MaxLength="20" Style="{DynamicResource MetroTextBoxStyle}" Background="{DynamicResource DataServerBrush}" Text="{Binding DataServerAddress}" GotFocus="txtBox_GotFocus" LostFocus="txtBox_LostFocus" TextChanged="txtBox_OnTextChanged" Tag="DataServerBrush"/>
+            <TextBox Margin="10,0,0,0" Height="40" Width="60" MaxLength="20" Style="{DynamicResource MetroTextBoxStyle}" Background="{DynamicResource ServerPortBrush}" Text="{Binding DataServerPort}" GotFocus="txtBox_GotFocus" LostFocus="txtBox_LostFocus" TextChanged="txtBox_OnTextChanged" Tag="ServerPortBrush"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Grid Width="315" Margin="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="65"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button HorizontalAlignment="Left" Grid.Column="0" Height="40" Width="100" Content="测试链接" Style="{DynamicResource WhiteGrayButtonStyle}" Command="{Binding TestConnectionCommand}" FontSize="20"/>
+                <TextBlock Grid.Column="1" Margin="10" HorizontalAlignment="Left"  VerticalAlignment="Center" Text="{Binding ConnectionInfo}" Foreground="#FFFFFF"/>
+                <Button HorizontalAlignment="Right" Grid.Column="2" Height="40" Width="65" Content="完成" Style="{DynamicResource WhiteGrayButtonStyle}" Command="{Binding AcceptConnectionCommand}" FontSize="20"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

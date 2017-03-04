@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="CloudDriveShell.CloudDriveContent.Views.CloudDriveContent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:regions="http://prismlibrary.com/"
+             xmlns:inf="clr-namespace:CloudDriveShell.Infrastructure;assembly=CloudDriveShell.Infrastructure"
+             xmlns:controls="clr-namespace:Transitionals.Controls;assembly=Transitionals"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary Source="pack://application:,,,/CloudDriveShell.Infrastructure;component/Theme/General.xaml"/>
+    </UserControl.Resources>
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="160"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox Margin="0" Style="{DynamicResource ResourceKey=LeftStyleListBox}" ItemsSource="{Binding Path=LeftMenus}" SelectedItem="{Binding Path=SelectedMenu}"/>
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="#DCDCDC"  ShowsPreview="True" Width="1"/>
+        <controls:TransitionElement Transition="{Binding Source={StaticResource CloudDriveConfigManager}, Path=TransitionToUse,Mode=OneTime}"  Grid.Column="2" HorizontalAlignment="Stretch"  x:Name="ActionContentPlaceHolder" regions:RegionManager.RegionName="{x:Static inf:RegionNames.ActionCloudDriveRightRegion}"/>
+    </Grid>
+</UserControl>
+ 

@@ -1,0 +1,38 @@
+﻿<Window x:Class="CloudDriveShell.Infrastructure.Views.DialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CreateFolderWindow" Height="180" Width="400"
+        AllowsTransparency="True" WindowStyle="None" ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner" BorderThickness="1">
+    <Window.Effect>
+        <DropShadowEffect BlurRadius="12" Color="#FF858484" Direction="90" ShadowDepth="1"/>
+    </Window.Effect>
+    <Window.Resources>
+        <ResourceDictionary Source="../Theme/General.xaml"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid Background="#FFFAFAFA" Grid.Row="0" MouseLeftButtonDown="PART_TITLEBAR_MouseLeftButtonDown" >
+            <TextBlock VerticalAlignment="Center" Text="{Binding Path=DialogTitle}" HorizontalAlignment="Left" Margin="15,0,0,0" FontSize="15"/>
+            <DockPanel  Grid.Row="0" HorizontalAlignment="Right">
+                <Button x:Name="BtnClose" x:FieldModifier="private" VerticalAlignment="Center" Margin="2,2,12,0" Command="{Binding Path=CancelCommand}"
+             Height="20" Width="20" Style="{DynamicResource MetroButtonStyle}" ToolTip="关闭">
+                    <Path Data="F1M54.0573,47.8776L38.1771,31.9974 54.0547,16.1198C55.7604,14.4141 55.7604,11.6511 54.0573,9.94531 52.3516,8.23962 49.5859,8.23962 47.8802,9.94531L32.0026,25.8229 16.1224,9.94531C14.4167,8.23962 11.6511,8.23962 9.94794,9.94531 8.24219,11.6511 8.24219,14.4141 9.94794,16.1198L25.8255,32 9.94794,47.8776C8.24219,49.5834 8.24219,52.3477 9.94794,54.0534 11.6511,55.7572 14.4167,55.7585 16.1224,54.0534L32.0026,38.1745 47.8802,54.0534C49.5859,55.7585 52.3516,55.7572 54.0573,54.0534 55.7604,52.3477 55.763,49.5834 54.0573,47.8776z" 
+              Stretch="Uniform" Fill="Black" Width="12" Margin="0,0,0,0" ></Path>
+                </Button>
+            </DockPanel>
+        </Grid>
+        <StackPanel Grid.Row="1" FlowDirection="LeftToRight" Orientation="Horizontal" VerticalAlignment="Center" Margin="10">
+            <Image Width="60" Height="60" Margin="40,0,0,0" Source="../Resources/information.png"/>
+            <TextBlock Margin="25,0,0,0" Width="240" Text="{Binding Path=DialogMessage}" VerticalAlignment="Center" FontSize="14" TextWrapping="WrapWithOverflow"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Margin="0,3,20,3" Height="30" IsDefault="True" Width="65" Content="确定" Style="{DynamicResource WhiteGrayButtonStyle}" Command="{Binding OkCommand}" FontSize="15"/>
+            <Button x:Name="CannelBtn" Margin="0,3,20,3" Height="30" IsDefault="False" Width="65" Content="取消" Style="{DynamicResource WhiteGrayButtonStyle}" Command="{Binding CancelCommand}" FontSize="15"/>
+        </StackPanel>
+    </Grid>
+</Window>
