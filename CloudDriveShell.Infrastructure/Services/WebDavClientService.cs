@@ -56,15 +56,24 @@ namespace CloudDriveShell.Infrastructure.Services
 
         public async Task<bool> Login(string userName, string password)
         {
-            _client = new Client(new NetworkCredential { UserName = userName, Password = password })
+            try
             {
-                Server = string.Format("{0}://{1}:{2}", _isHttps ? "https" : "http", _serverAddress, _serverPort),
-                BasePath = _serverBasePath
-            };
-            var files = await _client.List();
-            ShareHelper.Instance.Init(userName, password, _client.Server);
 
-            return files != null;
+                _client = new Client(new NetworkCredential { UserName = userName, Password = password })
+                {
+                    Server = string.Format("{0}://{1}:{2}", _isHttps ? "https" : "http", _serverAddress, _serverPort),
+                    BasePath = _serverBasePath
+                };
+                var files = await _client.List();
+                ShareHelper.Instance.Init(userName, password, _client.Server);
+
+                return files != null;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
         }
 
         public async Task<List<ResourceItem>> GetList(string path)

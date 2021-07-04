@@ -9,6 +9,6 @@ namespace CloudDriveShell.Infrastructure.Models
     public class WebDavConstant
     {
         public static string DefaultPort = "80";
-        public static string RootPath = "/remote.php/webdav/";
+        public static string RootPath = "/dav/";
     }
 }

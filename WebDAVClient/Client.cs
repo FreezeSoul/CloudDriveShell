@@ -147,6 +147,10 @@ namespace WebDAVClient
                 Delegate.Combine(ServicePointManager.ServerCertificateValidationCallback,
                 new RemoteCertificateValidationCallback(ValidateServerCertificate));
             ServicePointManager.Expect100Continue = false;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3
+                                                   | SecurityProtocolType.Tls
+                                                   | (SecurityProtocolType)0x300 //Tls11
+                                                   | (SecurityProtocolType)0xC00; //Tls12
         }
 
         private static bool ValidateServerCertificate(object sender, X509Certificate cert, X509Chain chain, SslPolicyErrors error)
